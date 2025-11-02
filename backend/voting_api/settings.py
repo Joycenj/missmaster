@@ -55,6 +55,25 @@ ROOT_URLCONF = "voting_api.urls"
 WSGI_APPLICATION = "voting_api.wsgi.application"
 
 # --------------------------------------------------
+# TEMPLATES (required for Django admin)
+# --------------------------------------------------
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],  # optional; can be empty
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
+
+# --------------------------------------------------
 # DATABASE
 # --------------------------------------------------
 # Default SQLite (local)
@@ -109,7 +128,11 @@ CORS_ALLOWED_ORIGINS = [
     # "https://missmaster-frontend.vercel.app",
     # "https://www.missmasterudm.com",
 ]
-CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",") if os.getenv("CSRF_TRUSTED_ORIGINS") else []
+CSRF_TRUSTED_ORIGINS = (
+    os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
+    if os.getenv("CSRF_TRUSTED_ORIGINS")
+    else []
+)
 
 # --------------------------------------------------
 # CAMPAY ENV CONFIG (read by your views)
