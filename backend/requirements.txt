@@ -6,3 +6,4 @@ django-redis==5.4.0
 gunicorn
 whitenoise
 django-cors-headers
+requests==2.32.3
